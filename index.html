@@ -109,6 +109,7 @@ h2::after{content:"";display:inline-block;width:.6em;height:.9em;margin-left:10p
 @keyframes qp{50%{box-shadow:0 0 22px -2px var(--c)}}
 .qt{color:var(--c);font-size:9px;margin-bottom:12px;animation:blink 1.2s steps(2) infinite}
 .qr p{margin:12px 0 0;font-size:13px;color:var(--mu)}
+.pair{grid-template-columns:1fr 1fr;gap:16px}
 .cap{font:8px/1.9 'Press Start 2P',monospace;color:var(--mu)}
 .lvn{display:flex;justify-content:space-between;align-items:center;font-size:10px;color:var(--mu);margin-bottom:10px}
 .lvn a{color:var(--mu);text-decoration:none}
@@ -206,7 +207,7 @@ footer{text-align:center;color:var(--mu);font:9px 'Press Start 2P',monospace;pad
 <div class="ach rv"><div class="trophy" aria-hidden="true">&#9733;</div><div><div class="px at">ACHIEVEMENT UNLOCKED: HANDCRAFTED</div><p>Every level below was built by hand, back before AI could finish my sentences. That means the code took longer, the bugs are 100% organic and free-range, and each one was fixed the traditional way: staring at the screen until it got embarrassed.</p></div></div>
 
 <article class="lv rv" id="lv1" style="--c:var(--cy)" data-n="01"><div class="tagline">STAGE 01 // RETRO ARCADE</div>
-<div class="media"><img class="fr" src="media/pong1.webp" alt="Crazy Pong gameplay" loading="lazy"><div class="more"><img class="fr" src="media/pong2.webp" alt="Crazy Pong running in the Easy68K simulator" loading="lazy"></div></div>
+<div class="media"><img class="fr" src="media/pong1.webp" alt="Crazy Pong gameplay" loading="lazy"></div>
 <div class="pn"><div class="px lvn">LEVEL 01<a href="#select">&#9650; LEVELS</a></div><h3>CRAZY PONG</h3><div class="sub">Easy68K Assembly · Retro arcade</div><p>Pong rebuilt from scratch in assembly with a twist: misses bounce off the wall, and every paddle hit sends the ball out at a random angle and velocity.</p>
 <details class="case" open><summary><span class="o">&#9660; CLOSE CASE FILE</span><span class="c">&#9654; OPEN CASE FILE</span></summary><div class="cf">
 <h4>GOAL</h4><p>Recreate Pong at the lowest level to understand what a game really needs: input, update, collision and draw.</p>
@@ -224,7 +225,7 @@ footer{text-align:center;color:var(--mu);font:9px 'Press Start 2P',monospace;pad
 </article>
 
 <article class="lv rv" id="lv3" style="--c:var(--li)" data-n="03"><div class="tagline">STAGE 03 // NARRATIVE ADVENTURE</div>
-<div class="media"><img class="fr" src="media/caeab.webp" alt="Caesura Aura Meter ability" loading="lazy"><div class="more"><img class="fr" src="media/cae1.webp" alt="Caesura gameplay" loading="lazy"><img class="fr" src="media/cae3.webp" alt="Caesura gameplay" loading="lazy"><img class="fr" src="media/cae4.webp" alt="Caesura gameplay" loading="lazy"></div></div>
+<div class="media"><img class="fr" src="media/caeab.webp" alt="Caesura Aura Meter ability" loading="lazy"><div class="more pair"><img class="fr" src="media/cae3.webp" alt="Caesura gameplay" loading="lazy"><img class="fr" src="media/cae4.webp" alt="Caesura gameplay" loading="lazy"></div></div>
 <div class="pn"><div class="px lvn">LEVEL 03<a href="#select">&#9650; LEVELS</a></div><h3>CAESURA</h3><div class="sub">Third-person action-adventure · 22-person team</div><p>You play Lyra, a musician whose lyre heals corrupted creatures. I built the Aura Meter end to end (gameplay logic and UI), plus camera systems, fades and damage vignettes.</p><a class="btn" href="https://www.youtube.com/live/RwaHp0qxqt4?feature=shared&amp;t=2466">&#9654; GAMEPLAY DEMO</a>
 <details class="case" open><summary><span class="o">&#9660; CLOSE CASE FILE</span><span class="c">&#9654; OPEN CASE FILE</span></summary><div class="cf">
 <h4>GOAL</h4><p>Give the thesis game's core loop responsive controls and clear feedback, working inside a team of producers, artists, designers and programmers.</p>
@@ -251,7 +252,7 @@ footer{text-align:center;color:var(--mu);font:9px 'Press Start 2P',monospace;pad
 </article>
 
 <article class="lv r rv" id="lv6" style="--c:var(--mg)" data-n="06"><div class="tagline">STAGE 06 // TOOLS &amp; PROTOTYPING</div>
-<div class="media"><img class="fr" src="media/pnp1.webp" alt="Plug N Play ability prototype" loading="lazy"><div class="more"><img class="fr" src="media/pnp2.webp" alt="Plug N Play ability prototype" loading="lazy"><img class="fr" src="media/pnp3.webp" alt="Plug N Play ability prototype" loading="lazy"></div></div>
+<div class="media"><img class="fr" src="media/pnp1.webp" alt="Plug N Play ability prototype" loading="lazy"><div class="more pair"><img class="fr" src="media/pnp2.webp" alt="Plug N Play ability prototype" loading="lazy"><img class="fr" src="media/pnp3.webp" alt="Plug N Play ability prototype" loading="lazy"></div></div>
 <div class="pn"><div class="px lvn">LEVEL 06<a href="#select">&#9650; LEVELS</a></div><h3>PLUG N PLAY</h3><div class="sub">Esports ability kit system · Prototype</div><p>Modular, parameter-driven ability kits for competitive games: a trail ability, a sound-based ping, and a tunable movement ability, all adjustable live during testing.</p>
 <details class="case" open><summary><span class="o">&#9660; CLOSE CASE FILE</span><span class="c">&#9654; OPEN CASE FILE</span></summary><div class="cf">
 <h4>GOAL</h4><p>Prove that ability kits for competitive games can be modular, precise and quick to rebalance.</p>
