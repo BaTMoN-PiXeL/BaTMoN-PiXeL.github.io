@@ -10,129 +10,167 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%230a0e1a'/%3E%3Crect x='3' y='3' width='4' height='10' fill='%2300e5ff'/%3E%3Crect x='9' y='3' width='4' height='10' fill='%23ff2e93'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
 <style>
-:root{--bg:#0a0e1a;--pn:#10162a;--ln:#1c2540;--cy:#00e5ff;--mg:#ff2e93;--li:#a3ff12;--ye:#ffd23f;--tx:#cfd8f0;--mu:#8e99ab;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-html{scroll-padding-top:calc(64px + env(safe-area-inset-top,0px));scroll-behavior:smooth;background:var(--bg)}
+:root{--bg:#0a0e1a;--pn:#10162a;--ln:#1c2540;--cy:#00e5ff;--mg:#ff2e93;--li:#a3ff12;--ye:#ffd23f;--tx:#cfd8f0;--mu:#8e99ab;color-scheme:dark}
+html{scroll-padding-top:72px;scroll-behavior:smooth;background:var(--bg)}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.65 'IBM Plex Sans',Arial,sans-serif;overflow-x:hidden}
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:60}
-.grid{position:fixed;inset:0;z-index:-1;opacity:.4;background:linear-gradient(var(--ln) 1px,transparent 1px) 0 0/48px 48px,linear-gradient(90deg,var(--ln) 1px,transparent 1px) 0 0/48px 48px;animation:pan 8s linear infinite}
+a{color:inherit}
+.grid{position:fixed;inset:0;z-index:-2;opacity:.35;background:linear-gradient(var(--ln) 1px,transparent 1px) 0 0/48px 48px,linear-gradient(90deg,var(--ln) 1px,transparent 1px) 0 0/48px 48px;animation:pan 8s linear infinite}
 @keyframes pan{to{background-position:0 48px,48px 0}}
+.stars{position:fixed;inset:0;z-index:-1;pointer-events:none}
+.stars i{position:absolute;width:3px;height:3px;background:var(--c,#fff);box-shadow:0 0 6px var(--c,#fff);opacity:0;animation:tw var(--d,4s) ease-in-out infinite;animation-delay:var(--w,0s)}
+@keyframes tw{0%,100%{opacity:0}50%{opacity:.85}}
 .px,h1,h2,h3,.hud{font-family:'Press Start 2P',monospace;line-height:1.5}
-.hud{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;gap:16px;align-items:center;padding:calc(12px + env(safe-area-inset-top,0px)) 20px 12px;background:rgba(10,14,26,.92);border-bottom:1px solid var(--ln);font-size:10px}
+.hud{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;gap:16px;align-items:center;padding:12px clamp(16px,3vw,40px);background:rgba(10,14,26,.92);border-bottom:1px solid var(--ln);font-size:10px;backdrop-filter:blur(4px)}
 .hud b{color:var(--cy);white-space:nowrap}
 .bar{flex:1;height:10px;background:var(--ln);min-width:40px}
-.bar i{display:block;height:100%;width:0;background:var(--li);box-shadow:0 0 10px var(--li)}
-.hud a{color:var(--tx);text-decoration:none}
+.bar i{display:block;height:100%;width:0;background:var(--li);box-shadow:0 0 10px var(--li);transition:width .15s}
+.hud a{text-decoration:none;white-space:nowrap}
 .hud a:hover{color:var(--ye)}
-main{max-width:1100px;margin:0 auto;padding:0 20px 80px}
-.hero{min-height:80vh;display:flex;flex-direction:column;justify-content:center;gap:22px;padding-top:96px}
+main{max-width:1320px;margin:0 auto;padding:0 clamp(16px,3vw,40px) 80px}
+.hero{min-height:78vh;display:flex;flex-direction:column;justify-content:center;gap:22px;padding-top:96px}
 .start{color:var(--ye);font-size:12px;animation:blink 1s steps(2) infinite}
 @keyframes blink{50%{opacity:0}}
-h1{font-size:clamp(24px,6vw,54px);margin:0;color:#fff;text-shadow:0 0 18px var(--cy);animation:glitch 4s infinite}
+h1{font-size:clamp(26px,6vw,60px);margin:0;color:#fff;text-shadow:0 0 18px var(--cy);animation:glitch 4s infinite}
 @keyframes glitch{0%,92%,100%{transform:none;text-shadow:0 0 18px var(--cy)}94%{transform:translateX(-3px);text-shadow:3px 0 var(--mg),-3px 0 var(--cy)}96%{transform:translateX(3px);text-shadow:-3px 0 var(--mg),3px 0 var(--cy)}}
 .role{color:var(--cy);font-size:clamp(10px,2vw,15px);min-height:1.6em}
 .role::after{content:"_";animation:blink .8s steps(2) infinite}
-.lead{max-width:640px;color:var(--tx)}
+.lead{max-width:680px;margin:0}
 .btns{display:flex;flex-wrap:wrap;gap:14px}
-.btn{display:inline-block;padding:14px 18px;border:2px solid var(--cy);color:var(--cy);text-decoration:none;font:11px 'Press Start 2P',monospace;transition:.2s}
-.btn:hover{background:var(--cy);color:var(--bg);box-shadow:0 0 24px var(--cy);transform:translateY(-3px)}
-.btn.p{border-color:var(--li);color:var(--li)}
-.btn.p:hover{background:var(--li);color:var(--bg);box-shadow:0 0 24px var(--li)}
-.pn{background:var(--pn);border:2px solid var(--c,var(--cy));box-shadow:0 0 22px -6px var(--c,var(--cy));padding:22px}
-.sec{padding-top:56px}
-h2{font-size:clamp(14px,3vw,22px);color:#fff;margin:0 0 20px}
+.btn{display:inline-block;padding:14px 18px;border:2px solid var(--c,var(--cy));color:var(--c,var(--cy));text-decoration:none;font:11px 'Press Start 2P',monospace;transition:.2s;background:transparent;cursor:pointer}
+.btn:hover{background:var(--c,var(--cy));color:var(--bg);box-shadow:0 0 24px var(--c,var(--cy));transform:translateY(-3px)}
+.btn.p{--c:var(--li)}
+.pn{position:relative;background:var(--pn);border:2px solid var(--c,var(--cy));box-shadow:0 0 22px -8px var(--c,var(--cy));padding:24px;transition:box-shadow .3s,transform .3s}
+.pn:hover{box-shadow:0 0 34px -6px var(--c,var(--cy))}
+.pn::before,.pn::after{content:"";position:absolute;width:12px;height:12px;border:2px solid var(--c,var(--cy));transition:.3s}
+.pn::before{top:-8px;left:-8px;border-right:0;border-bottom:0}
+.pn::after{bottom:-8px;right:-8px;border-left:0;border-top:0}
+.pn:hover::before{top:-12px;left:-12px}
+.pn:hover::after{bottom:-12px;right:-12px}
+.sec{padding-top:64px}
+h2{font-size:clamp(14px,2.6vw,22px);color:#fff;margin:0 0 24px}
 h2 span{color:var(--c,var(--cy))}
-.sheet{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
-.k{color:var(--mu);font:9px 'Press Start 2P',monospace}
-.v{margin:6px 0 16px;color:#fff;font-weight:500}
-.chips span{display:inline-block;border:1px solid var(--ln);color:var(--cy);padding:3px 9px;margin:0 6px 6px 0;font-size:13px;transition:.2s}
-.chips span:hover{border-color:var(--cy);box-shadow:0 0 12px -2px var(--cy)}
-.q{display:grid;gap:14px;margin:0;padding:0;list-style:none}
-.q li{display:grid;grid-template-columns:150px 1fr;gap:16px;border-left:3px solid var(--c,var(--cy));padding:4px 0 4px 16px;transition:.25s}
-.q li:hover{transform:translateX(6px);background:rgba(0,229,255,.05)}
-.q .d{color:var(--mu);font-size:13px}
+h2::after{content:"";display:inline-block;width:.6em;height:.9em;margin-left:10px;vertical-align:-2px;background:var(--c,var(--cy));animation:blink 1s steps(2) infinite}
+/* player sheet */
+.sheet{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:stretch}
+.sheet .pn{display:flex;flex-direction:column;gap:20px}
+.ph{display:flex;justify-content:space-between;align-items:center;font:11px 'Press Start 2P',monospace;color:var(--c);padding-bottom:14px;border-bottom:1px dashed var(--c)}
+.ph em{font-style:normal;color:var(--mu);font-size:9px}
+.row .k{color:var(--mu);font:9px 'Press Start 2P',monospace;margin-bottom:10px}
+.row .v{color:#fff;font-weight:500}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{border:1px solid var(--ln);color:var(--c);padding:4px 10px;font-size:13.5px;transition:.2s}
+.chips span:hover{border-color:var(--c);box-shadow:0 0 12px -2px var(--c);transform:translateY(-2px)}
+/* quest log */
+.q{display:grid;gap:12px;margin:0;padding:0;list-style:none}
+.q li{display:grid;grid-template-columns:160px 1fr;gap:20px;border-left:3px solid var(--c,var(--cy));padding:8px 0 8px 18px;transition:.25s}
+.q li:hover{transform:translateX(6px);background:rgba(255,255,255,.03)}
+.q .d{color:var(--mu);font:9px/2.2 'Press Start 2P',monospace}
 .q b{color:#fff}
-.lv{display:grid;grid-template-columns:1.3fr 1fr;gap:28px;margin-bottom:40px;align-items:stretch}
+/* level select */
+.ls{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;margin-bottom:12px}
+.card{position:relative;display:flex;flex-direction:column;text-decoration:none;background:var(--pn);border:2px solid var(--c);box-shadow:0 0 18px -8px var(--c);transition:transform .25s,box-shadow .25s;overflow:hidden}
+.card:hover,.card:focus-visible{transform:translateY(-6px);box-shadow:0 0 30px -4px var(--c);outline:none}
+.thumb{position:relative;aspect-ratio:4/3;background:#000;overflow:hidden;border-bottom:2px solid var(--c)}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.8) brightness(.8);transition:.3s}
+.card:hover .thumb img{filter:none;transform:scale(1.06)}
+.thumb::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(0,0,0,.3) 0 2px,transparent 2px 4px);pointer-events:none}
+.thumb .code{position:absolute;inset:0;display:grid;place-items:center;font:clamp(18px,2.4vw,28px) 'Press Start 2P',monospace;color:var(--c);text-shadow:0 0 14px var(--c)}
+.badge{position:absolute;top:8px;left:8px;z-index:1;background:var(--c);color:var(--bg);font:9px 'Press Start 2P',monospace;padding:5px 7px}
+.card .nm{padding:12px 12px 4px;font:10px/1.6 'Press Start 2P',monospace;color:#fff}
+.card .tg{padding:0 12px 12px;color:var(--mu);font-size:12.5px}
+.play{position:absolute;right:10px;top:10px;z-index:1;font:9px 'Press Start 2P',monospace;color:var(--c);opacity:0;transform:translateX(6px);transition:.25s;text-shadow:0 0 8px var(--bg)}
+.card:hover .play,.card:focus-visible .play{opacity:1;transform:none;animation:blink .8s steps(2) infinite}
+.hint{color:var(--mu);font:9px 'Press Start 2P',monospace;margin:0 0 22px}
+.ach{display:flex;gap:18px;align-items:center;max-width:860px;margin:0 0 56px;padding:16px 20px;border:2px dashed var(--ye);background:linear-gradient(100deg,rgba(255,210,63,.06) 30%,rgba(255,210,63,.18) 50%,rgba(255,210,63,.06) 70%) 0 0/250% 100%;animation:shine 5s linear infinite}
+@keyframes shine{from{background-position:150% 0}to{background-position:-100% 0}}
+.trophy{flex:none;display:grid;place-items:center;width:52px;height:52px;background:var(--ye);color:var(--bg);font-size:28px;box-shadow:0 0 18px -2px var(--ye);animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-4px) rotate(-6deg)}}
+.ach .at{color:var(--ye);font-size:10px;margin-bottom:6px}
+.ach p{margin:0;font-size:14.5px}
+.hint kbd{color:var(--ye);font:inherit;border:1px solid var(--ln);padding:2px 6px}
+/* levels */
+.lv{display:grid;grid-template-columns:1.25fr 1fr;gap:36px;margin-bottom:56px;align-items:start;scroll-margin-top:84px}
 .lv.r .media{order:2}
-.scr{position:relative;min-height:320px;overflow:hidden;border:2px solid var(--c);box-shadow:0 0 30px -8px var(--c);background:radial-gradient(circle at 30% 20%,color-mix(in srgb,var(--c) 22%,var(--bg)),var(--bg) 70%)}
-.scr::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(0,0,0,.28) 0 2px,transparent 2px 4px);pointer-events:none}
-.scr .num{position:absolute;left:18px;bottom:6px;font:clamp(56px,9vw,110px) 'Press Start 2P',monospace;color:var(--c);opacity:.9}
-.scr .tag{position:absolute;right:14px;top:14px;font:10px 'Press Start 2P',monospace;color:var(--c)}
-.sweep{position:absolute;left:0;right:0;height:3px;background:var(--c);opacity:.6;box-shadow:0 0 14px var(--c);animation:sw 3.2s linear infinite}
-@keyframes sw{from{top:-4px}to{top:100%}}
-.ball{position:absolute;width:14px;height:14px;background:#fff;box-shadow:0 0 12px #fff;animation:bx 2.4s linear infinite alternate,by 1.1s linear infinite alternate}
-@keyframes bx{from{left:8%}to{left:88%}}
-@keyframes by{from{top:12%}to{top:70%}}
-.pad{position:absolute;top:35%;width:10px;height:70px;background:var(--c)}
-.pad.a{left:10px;animation:pd 1.1s ease-in-out infinite alternate}
-.pad.b{right:10px;animation:pd 1.1s ease-in-out infinite alternate-reverse}
-@keyframes pd{from{top:12%}to{top:62%}}
-.lv h3{font-size:clamp(14px,2.2vw,19px);color:var(--c);margin:0 0 6px}
-.lv .sub{color:var(--mu);font-size:13px;margin-bottom:12px}
+.lv>.pn{position:sticky;top:84px}
+.media{display:grid;gap:14px;align-content:start}
+.fr{display:block;width:100%;height:auto;background:#000;border:2px solid var(--c);box-shadow:0 0 26px -8px var(--c);transition:transform .3s,box-shadow .3s}
+.fr:hover{transform:scale(1.015);box-shadow:0 0 36px -4px var(--c)}
+.more{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+.cap{font:8px/1.9 'Press Start 2P',monospace;color:var(--mu)}
+.lvn{display:flex;justify-content:space-between;align-items:center;font-size:10px;color:var(--mu);margin-bottom:10px}
+.lvn a{color:var(--mu);text-decoration:none}
+.lvn a:hover{color:var(--c)}
+.lv h3{font-size:clamp(14px,1.8vw,19px);color:var(--c);margin:0 0 6px}
+.lv .sub{color:var(--mu);font-size:13.5px;margin-bottom:14px}
 .lv p{margin:0 0 12px}
-.lv .btn{margin-top:6px;border-color:var(--c);color:var(--c)}
-.lv .btn:hover{background:var(--c);color:var(--bg);box-shadow:0 0 24px var(--c)}
-.boss{text-align:center}
-.boss a.big{display:block;color:#fff;text-decoration:none;font:clamp(14px,3.4vw,24px) 'Press Start 2P',monospace;margin:14px 0;overflow-wrap:anywhere}
-.boss a.big:hover{color:var(--li);text-shadow:0 0 16px var(--li)}
-footer{text-align:center;color:var(--mu);font:9px 'Press Start 2P',monospace;padding:30px 0 10px}
-.rv{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
-.rv.on{opacity:1;transform:none}
-.media{display:grid;gap:12px;align-content:start}
-.fr{display:block;width:100%;height:auto;background:#000;border:2px solid var(--c);box-shadow:0 0 26px -8px var(--c)}
-.more{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px}
-.lv>.pn{position:sticky;top:76px}
-.cap{font:8px 'Press Start 2P',monospace;color:var(--mu);line-height:1.9}
-.lvn{font-size:10px;color:var(--mu);margin-bottom:8px}
-.lv{align-items:start}
-details.case{margin-top:14px;border-top:1px dashed var(--c);padding-top:10px}
-summary{cursor:pointer;color:var(--c);font:10px 'Press Start 2P',monospace;list-style:none;padding:8px 0;transition:.2s}
+.lv .btn{margin:4px 10px 4px 0}
+.lv.flash>.pn{animation:flash .9s ease-out}
+@keyframes flash{0%{box-shadow:0 0 0 0 var(--c),0 0 60px 6px var(--c)}100%{box-shadow:0 0 22px -8px var(--c)}}
+.gh{display:flex;flex-direction:column;justify-content:center;gap:16px;min-height:300px;padding:32px;border:2px solid var(--c);background:var(--pn);box-shadow:0 0 26px -8px var(--c);text-decoration:none;color:#fff;transition:.25s}
+.gh:hover{transform:translateY(-4px);box-shadow:0 0 36px -4px var(--c)}
+.gh .px{color:var(--c);font-size:11px}
+.gh b{font:clamp(13px,2vw,18px) 'Press Start 2P',monospace;line-height:1.6;overflow-wrap:anywhere}
+.ghs{color:var(--mu);font-size:14px}
+details.case{margin-top:16px;border-top:1px dashed var(--c);padding-top:10px}
+summary{cursor:pointer;color:var(--c);font:10px 'Press Start 2P',monospace;list-style:none;padding:8px 0;transition:.2s;user-select:none}
 summary:hover{text-shadow:0 0 12px var(--c)}
 summary::-webkit-details-marker{display:none}
-summary::before{content:"\25B6  "}
-details[open] summary::before{content:"\25BC  "}
-.cf h4{font:9px 'Press Start 2P',monospace;color:var(--ye);margin:14px 0 6px}
+summary .o,details[open] summary .c{display:none}
+details[open] summary .o{display:inline}
+.cf h4{font:9px 'Press Start 2P',monospace;color:var(--ye);margin:16px 0 6px}
 .cf p,.cf li{font-size:14.5px;margin:0 0 6px}
 .cf ul{padding-left:18px;margin:0}
 details[open] .cf{animation:dn .45s ease-out}
 @keyframes dn{from{opacity:0;transform:translateY(-8px)}}
-.gh{display:flex;flex-direction:column;justify-content:center;gap:14px;min-height:260px;padding:28px;border:2px solid var(--c);background:var(--pn);box-shadow:0 0 26px -8px var(--c);text-decoration:none;color:#fff;transition:.25s}
-.gh:hover{transform:translateY(-4px);box-shadow:0 0 36px -4px var(--c)}
-.gh .px{color:var(--c);font-size:11px}
-.gh b{font:clamp(13px,2.2vw,18px) 'Press Start 2P',monospace;line-height:1.6;overflow-wrap:anywhere}
-.ghs{color:var(--mu);font-size:14px}
-.sheet{align-items:start}
-.sheet .k{margin-bottom:8px}
-.sheet .v{margin:0 0 18px}
-.sheet .chips{margin-bottom:16px}
-.sheet .pn{padding-bottom:12px}
-@media(max-width:780px){.lv>.pn{position:static}.lv{grid-template-columns:1fr}.lv.r .media{order:0}.q li{grid-template-columns:1fr;gap:2px}.hud a{display:none}}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+.boss{text-align:center}
+.boss .pn{padding:40px 24px}
+.boss a.big{display:block;color:#fff;text-decoration:none;font:clamp(14px,3vw,24px) 'Press Start 2P',monospace;margin:18px 0 10px;overflow-wrap:anywhere}
+.boss a.big:hover{color:var(--li);text-shadow:0 0 16px var(--li)}
+footer{text-align:center;color:var(--mu);font:9px 'Press Start 2P',monospace;padding:30px 0 10px}
+.rv{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+.rv.on{opacity:1;transform:none}
+@media(max-width:1100px){.ls{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:900px){.sheet{grid-template-columns:1fr}.lv{grid-template-columns:1fr}.lv.r .media{order:0}.lv>.pn{position:static}}
+@media(max-width:620px){.ls{grid-template-columns:repeat(2,1fr)}.q li{grid-template-columns:1fr;gap:2px}.hud a{display:none}.hint{display:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
 <div class="grid"></div>
-<div class="hud"><b>NILLOHIT</b><div class="bar"><i id="bar"></i></div><b id="xp">XP 0%</b><a href="#levels">LEVELS</a><a href="#boss">CONTACT</a></div>
+<div class="stars" id="stars"></div>
+<div class="hud"><b>NILLOHIT</b><div class="bar"><i id="bar"></i></div><b id="xp">XP 0%</b><a href="#select">LEVEL SELECT</a><a href="#boss">CONTACT</a></div>
 <main>
 <section class="hero">
 <div class="start px">&#9654; PRESS START</div>
 <h1>NILLOHIT MANNA</h1>
 <div class="role px" id="role">Gameplay Programmer · Unreal Engine · UI &amp; Systems</div>
 <p class="lead">I build the systems behind games: gameplay, UI, metagame and backend-connected features. Based in Navi Mumbai, previously on the Fortnite Island team at Epic Games.</p>
-<div class="btns"><a class="btn p" href="#levels">&#9654; START</a><a class="btn" href="https://www.linkedin.com/in/nillohit-manna">LINKEDIN</a><a class="btn" href="https://github.com/BaTMoN-PiXeL">GITHUB</a></div>
+<div class="btns"><a class="btn p" href="#select">&#9654; START</a><a class="btn" href="https://www.linkedin.com/in/nillohit-manna">LINKEDIN</a><a class="btn" href="https://github.com/BaTMoN-PiXeL">GITHUB</a></div>
 </section>
 
 <section class="sec rv">
 <h2><span>PLAYER</span> SHEET</h2>
 <div class="sheet">
-<div class="pn"><div class="k">CLASS</div><div class="v">Gameplay Programmer</div><div class="k">CURRENT GUILD</div><div class="v">Dirtcube Interactive</div><div class="k">EDUCATION</div><div class="v">MS, FIEA (UCF) · B.Tech CS</div></div>
-<div class="pn" style="--c:var(--mg)"><div class="k">MAIN WEAPONS</div><div class="chips"><span>Unreal Engine</span><span>C++</span><span>Blueprint</span><span>UEFN</span><span>Unity</span><span>Frostbite</span></div><div class="k">SIDE QUESTS</div><div class="chips"><span>C#</span><span>Python</span><span>JavaScript</span><span>React</span><span>SQL</span><span>Assembly</span></div></div>
-<div class="pn" style="--c:var(--li)"><div class="k">INVENTORY</div><div class="chips"><span>Perforce</span><span>Git</span><span>GitHub</span><span>Jira</span><span>QuickBuild</span><span>Steamworks</span><span>MCP</span></div><div class="k">SPECIALTIES</div><div class="chips"><span>UI systems</span><span>Metagame</span><span>Progression</span><span>Profiling</span></div></div>
+<div class="pn"><div class="ph">&#9632; STATS<em>P1</em></div>
+<div class="row"><div class="k">CLASS</div><div class="v">Gameplay Programmer</div></div>
+<div class="row"><div class="k">CURRENT GUILD</div><div class="v">Dirtcube Interactive</div></div>
+<div class="row"><div class="k">TRAINING</div><div class="v">MS, FIEA (UCF) · B.Tech CS</div></div>
+<div class="row"><div class="k">HOME BASE</div><div class="v">Navi Mumbai, India</div></div>
+</div>
+<div class="pn" style="--c:var(--mg)"><div class="ph">&#9632; LOADOUT<em>12 ITEMS</em></div>
+<div class="row"><div class="k">MAIN WEAPONS</div><div class="chips"><span>Unreal Engine</span><span>C++</span><span>Blueprint</span><span>UEFN</span><span>Unity</span><span>Frostbite</span></div></div>
+<div class="row"><div class="k">SIDE QUESTS</div><div class="chips"><span>C#</span><span>Python</span><span>JavaScript</span><span>React</span><span>SQL</span><span>Assembly</span></div></div>
+</div>
+<div class="pn" style="--c:var(--li)"><div class="ph">&#9632; INVENTORY<em>11 ITEMS</em></div>
+<div class="row"><div class="k">TOOLS</div><div class="chips"><span>Perforce</span><span>Git</span><span>GitHub</span><span>Jira</span><span>QuickBuild</span><span>Steamworks</span><span>MCP</span></div></div>
+<div class="row"><div class="k">SPECIALTIES</div><div class="chips"><span>UI systems</span><span>Metagame</span><span>Progression</span><span>Profiling</span></div></div>
+</div>
 </div>
 </section>
 
 <section class="sec rv" id="quests">
-<h2><span>QUEST</span> LOG</h2>
+<h2 style="--c:var(--mg)"><span>QUEST</span> LOG</h2>
 <ul class="q">
 <li><span class="d">2026 – NOW</span><span><b>Dirtcube Interactive</b> · Unreal Game Developer. Metagame (home, shop, inventory, leaderboards), Specter backend integration, challenges and progression, Steam microtransactions.</span></li>
 <li style="--c:var(--mg)"><span class="d">2025</span><span><b>Ouroboros Gaming</b> · Gameplay Programmer (volunteer). Project Parasite: FPS profiling and AI/gameplay bug fixes.</span></li>
@@ -142,58 +180,68 @@ details[open] .cf{animation:dn .45s ease-out}
 </ul>
 </section>
 
-<section class="sec" id="levels">
-<h2 class="rv"><span>SELECT</span> LEVEL</h2>
+<section class="sec" id="select">
+<h2 class="rv" style="--c:var(--li)"><span>SELECT</span> LEVEL</h2>
+<nav class="ls rv" aria-label="Projects">
+<a class="card" href="#lv1" style="--c:var(--cy)"><div class="thumb"><span class="badge">01</span><span class="play">&#9654; PLAY</span><img src="media/pong1.webp" alt="" loading="lazy"></div><div class="nm">CRAZY PONG</div><div class="tg">Assembly</div></a>
+<a class="card" href="#lv2" style="--c:var(--mg)"><div class="thumb"><span class="badge">02</span><span class="play">&#9654; PLAY</span><img src="media/edf2.webp" alt="" loading="lazy"></div><div class="nm">EARTH DEFENSE FORCE</div><div class="tg">C++ · OpenGL</div></a>
+<a class="card" href="#lv3" style="--c:var(--li)"><div class="thumb"><span class="badge">03</span><span class="play">&#9654; PLAY</span><img src="media/caeab.webp" alt="" loading="lazy"></div><div class="nm">CAESURA</div><div class="tg">Unreal · Thesis game</div></a>
+<a class="card" href="#lv4" style="--c:var(--ye)"><div class="thumb"><span class="badge">04</span><span class="play">&#9654; PLAY</span><div class="code">&lt;/&gt;</div></div><div class="nm">C++ GAME ENGINE</div><div class="tg">Built from scratch</div></a>
+<a class="card" href="#lv5" style="--c:var(--cy)"><div class="thumb"><span class="badge">05</span><span class="play">&#9654; PLAY</span><img src="media/nav_thumb.webp" alt="" loading="lazy"></div><div class="nm">NAVY LEAGUE AR</div><div class="tg">Unity · Web AR</div></a>
+<a class="card" href="#lv6" style="--c:var(--mg)"><div class="thumb"><span class="badge">06</span><span class="play">&#9654; PLAY</span><img src="media/pnp1.webp" alt="" loading="lazy"></div><div class="nm">PLUG N PLAY</div><div class="tg">Ability kit tools</div></a>
+</nav>
+<p class="hint rv">TIP: PRESS <kbd>1</kbd>–<kbd>6</kbd> TO WARP TO A LEVEL</p>
+<div class="ach rv"><div class="trophy" aria-hidden="true">&#9733;</div><div><div class="px at">ACHIEVEMENT UNLOCKED: HANDCRAFTED</div><p>Every level below was built by hand, back before AI could finish my sentences. That means the code took longer, the bugs are 100% organic and free-range, and each one was fixed the traditional way: staring at the screen until it got embarrassed.</p></div></div>
 
-<article class="lv rv" style="--c:var(--cy)">
-<div class="media"><img class="fr" src="media/pong1.webp" alt="Gameplay clip" loading="lazy"><div class="more"><img class="fr" src="media/pong2.webp" alt="Gameplay clip" loading="lazy"></div></div>
-<div class="pn"><div class="px lvn">LEVEL 01</div><h3>CRAZY PONG</h3><div class="sub">Easy68K Assembly · Retro arcade</div><p>Pong rebuilt from scratch in assembly with a twist: misses bounce off the wall, and every paddle hit sends the ball out at a random angle and velocity.</p>
-<details class="case"><summary>OPEN CASE FILE</summary><div class="cf">
+<article class="lv rv" id="lv1" style="--c:var(--cy)">
+<div class="media"><img class="fr" src="media/pong1.webp" alt="Crazy Pong gameplay" loading="lazy"><div class="more"><img class="fr" src="media/pong2.webp" alt="Crazy Pong running in the Easy68K simulator" loading="lazy"></div></div>
+<div class="pn"><div class="px lvn">LEVEL 01<a href="#select">&#9650; LEVELS</a></div><h3>CRAZY PONG</h3><div class="sub">Easy68K Assembly · Retro arcade</div><p>Pong rebuilt from scratch in assembly with a twist: misses bounce off the wall, and every paddle hit sends the ball out at a random angle and velocity.</p>
+<details class="case" open><summary><span class="o">&#9660; CLOSE CASE FILE</span><span class="c">&#9654; OPEN CASE FILE</span></summary><div class="cf">
 <h4>GOAL</h4><p>Recreate Pong at the lowest level to understand what a game really needs: input, update, collision and draw.</p>
 <h4>HOW IT WORKS</h4><ul><li>Ball position and velocity update every frame.</li><li>Paddle hits pick a random rebound angle and speed, so no two rallies play the same.</li><li>Collision and physics are custom-built; the score is drawn as a 7-segment LED display.</li></ul>
 <h4>TAKEAWAY</h4><p>Managing registers and memory by hand gave me a deep respect for what engines abstract away.</p></div></details></div>
 </article>
 
-<article class="lv r rv" style="--c:var(--mg)">
-<div class="media"><img class="fr" src="media/edf2.webp" alt="Gameplay clip" loading="lazy"><div class="more"><img class="fr" src="media/edf1.webp" alt="Gameplay clip" loading="lazy"><img class="fr" src="media/sprite_sheet_1.png" alt="Boss sprite sheet" loading="lazy"><img class="fr" src="media/sprite_sheet_3.png" alt="Stage 2 boss sprites" loading="lazy"></div><div class="cap">SPRITES: JALECO, SUPER E.D.F. (1991). STAGE 2 BOSS RIPPED BY FALCON DELTA.</div></div>
-<div class="pn"><div class="px lvn">LEVEL 02</div><h3>EARTH DEFENSE FORCE</h3><div class="sub">C++ · OpenGL · Arcade shooter</div><p>A recreation of the Jaleco side-scroller using the original sprite sheets. Enemy behavior, collisions, scoring and input all handled in C++.</p>
-<details class="case"><summary>OPEN CASE FILE</summary><div class="cf">
+<article class="lv r rv" id="lv2" style="--c:var(--mg)">
+<div class="media"><img class="fr" src="media/edf2.webp" alt="Earth Defense Force gameplay" loading="lazy"><div class="more"><img class="fr" src="media/edf1.webp" alt="Earth Defense Force title screen" loading="lazy"><img class="fr" src="media/sprite_sheet_1.png" alt="Boss sprite sheet" loading="lazy"><img class="fr" src="media/sprite_sheet_3.png" alt="Stage 2 boss sprites" loading="lazy"></div><div class="cap">SPRITES: JALECO, SUPER E.D.F. (1991). STAGE 2 BOSS RIPPED BY FALCON DELTA.</div></div>
+<div class="pn"><div class="px lvn">LEVEL 02<a href="#select">&#9650; LEVELS</a></div><h3>EARTH DEFENSE FORCE</h3><div class="sub">C++ · OpenGL · Arcade shooter</div><p>A recreation of the Jaleco side-scroller using the original sprite sheets. Enemy behavior, collisions, scoring and input all handled in C++.</p>
+<details class="case" open><summary><span class="o">&#9660; CLOSE CASE FILE</span><span class="c">&#9654; OPEN CASE FILE</span></summary><div class="cf">
 <h4>GOAL</h4><p>Rebuild a 1991 arcade shooter in C++ and OpenGL, with difficulty that escalates from the first wave to the boss.</p>
 <h4>HOW IT WORKS</h4><ul><li>Sprites are cut from the original sheets and animated in OpenGL.</li><li>One level of 10 waves, with four enemy groups spawning randomly, then a boss.</li><li>Collisions, scoring and input in C++, with a score and lives HUD.</li></ul>
 <h4>TAKEAWAY</h4><p>Structuring wave spawning and enemy groups so the pacing builds on its own.</p></div></details></div>
 </article>
 
-<article class="lv rv" style="--c:var(--li)">
-<div class="media"><img class="fr" src="media/caeab.webp" alt="Gameplay clip" loading="lazy"><div class="more"><img class="fr" src="media/cae1.webp" alt="Gameplay clip" loading="lazy"><img class="fr" src="media/cae3.webp" alt="Gameplay clip" loading="lazy"><img class="fr" src="media/cae4.webp" alt="Gameplay clip" loading="lazy"></div></div>
-<div class="pn"><div class="px lvn">LEVEL 03</div><h3>CAESURA</h3><div class="sub">Third-person action-adventure · 22-person team</div><p>You play Lyra, a musician whose lyre heals corrupted creatures. I built the Aura Meter end to end (gameplay logic and UI), plus camera systems, fades and damage vignettes.</p><a class="btn" href="https://www.youtube.com/live/RwaHp0qxqt4?feature=shared&amp;t=2466">&#9654; GAMEPLAY DEMO</a>
-<details class="case"><summary>OPEN CASE FILE</summary><div class="cf">
+<article class="lv rv" id="lv3" style="--c:var(--li)">
+<div class="media"><img class="fr" src="media/caeab.webp" alt="Caesura Aura Meter ability" loading="lazy"><div class="more"><img class="fr" src="media/cae1.webp" alt="Caesura gameplay" loading="lazy"><img class="fr" src="media/cae3.webp" alt="Caesura gameplay" loading="lazy"><img class="fr" src="media/cae4.webp" alt="Caesura gameplay" loading="lazy"></div></div>
+<div class="pn"><div class="px lvn">LEVEL 03<a href="#select">&#9650; LEVELS</a></div><h3>CAESURA</h3><div class="sub">Third-person action-adventure · 22-person team</div><p>You play Lyra, a musician whose lyre heals corrupted creatures. I built the Aura Meter end to end (gameplay logic and UI), plus camera systems, fades and damage vignettes.</p><a class="btn" href="https://www.youtube.com/live/RwaHp0qxqt4?feature=shared&amp;t=2466">&#9654; GAMEPLAY DEMO</a>
+<details class="case" open><summary><span class="o">&#9660; CLOSE CASE FILE</span><span class="c">&#9654; OPEN CASE FILE</span></summary><div class="cf">
 <h4>GOAL</h4><p>Give the thesis game's core loop responsive controls and clear feedback, working inside a team of producers, artists, designers and programmers.</p>
 <h4>WHAT I BUILT</h4><ul><li>Aura Meter: the gameplay logic and its UI.</li><li>A core mechanic driven by analog controller input, for responsive player control.</li><li>Camera systems and effects: fades, damage vignette and lock-on.</li></ul>
 <h4>TAKEAWAY</h4><p>Shipping inside a large team means clean hand-offs with design and art, not just working code.</p></div></details></div>
 </article>
 
-<article class="lv r rv" style="--c:var(--ye)">
+<article class="lv r rv" id="lv4" style="--c:var(--ye)">
 <div class="media"><a class="gh" href="https://github.com/BaTMoN-PiXeL/Game-Engine"><span class="px">&lt;/&gt; SOURCE CODE</span><b>BaTMoN-PiXeL / Game-Engine</b><span class="ghs">Browse the full C++ engine on GitHub &#8599;</span></a></div>
-<div class="pn"><div class="px lvn">LEVEL 04</div><h3>C++ GAME ENGINE</h3><div class="sub">Built from scratch · Unit tested</div><p>A data-driven engine with a hierarchical JSON runtime and a lightweight scripting layer, so designers can change behavior without recompiling. Our team shipped <i>Vampire Hunters</i> on top of it.</p><a class="btn" href="https://github.com/BaTMoN-PiXeL/Game-Engine">&#9654; VIEW ON GITHUB</a>
-<details class="case"><summary>OPEN CASE FILE</summary><div class="cf">
+<div class="pn"><div class="px lvn">LEVEL 04<a href="#select">&#9650; LEVELS</a></div><h3>C++ GAME ENGINE</h3><div class="sub">Built from scratch · Unit tested</div><p>A data-driven engine with a hierarchical JSON runtime and a lightweight scripting layer, so designers can change behavior without recompiling. Our team shipped <i>Vampire Hunters</i> on top of it.</p><a class="btn" href="https://github.com/BaTMoN-PiXeL/Game-Engine">&#9654; VIEW ON GITHUB</a>
+<details class="case" open><summary><span class="o">&#9660; CLOSE CASE FILE</span><span class="c">&#9654; OPEN CASE FILE</span></summary><div class="cf">
 <h4>GOAL</h4><p>Build the systems every game needs (data, events, scripting) and keep them clean enough to grow.</p>
 <h4>HOW IT WORKS</h4><ul><li><b>Datum:</b> a typed value container (int, float, vector, matrix, string) with resizable arrays, covered by unit tests.</li><li><b>Scope and Attributed:</b> hierarchical runtime data for game objects.</li><li><b>ParseCoordinator and type handlers:</b> read JSON into that data (Chain of Responsibility).</li><li><b>Factory:</b> creates game objects and actions from data.</li><li><b>Event, EventManager, Subscriber:</b> Observer-style messaging.</li><li><b>Action and ActionList:</b> the lightweight scripting layer.</li></ul>
 <h4>TAKEAWAY</h4><p>Patterns and tests are what let a small team keep changing an engine without breaking it.</p></div></details></div>
 </article>
 
-<article class="lv rv" style="--c:var(--cy)">
-<div class="media"><img class="fr" src="media/nav.webp" alt="Gameplay clip" loading="lazy" style="max-width:320px;margin:0 auto"><div class="more" style="justify-items:center"><img class="fr" src="media/qr_for_ar_game.png" alt="QR code to play the AR game" loading="lazy" style="background:#fff;padding:10px;max-width:200px"></div><div class="cap" style="text-align:center">SCAN TO PLAY THE AR GAME</div></div>
-<div class="pn"><div class="px lvn">LEVEL 05</div><h3>NAVY LEAGUE AR</h3><div class="sub">Web-based AR · Public park experience</div><p>Kid-friendly AR minigames (marching drills, firefighting, direction matching) that teach the history of a former naval base. I built the gameplay logic and flow, with a medal for every completed game.</p>
-<details class="case"><summary>OPEN CASE FILE</summary><div class="cf">
+<article class="lv rv" id="lv5" style="--c:var(--cy)">
+<div class="media"><img class="fr" src="media/nav.webp" alt="Navy League AR minigame on a phone" loading="lazy" style="max-width:320px;margin:0 auto"><div class="more" style="justify-items:center"><img class="fr" src="media/qr_for_ar_game.png" alt="QR code to play the AR game" loading="lazy" style="background:#fff;padding:10px;max-width:180px"></div><div class="cap" style="text-align:center">SCAN TO PLAY THE AR GAME</div></div>
+<div class="pn"><div class="px lvn">LEVEL 05<a href="#select">&#9650; LEVELS</a></div><h3>NAVY LEAGUE AR</h3><div class="sub">Web-based AR · Public park experience</div><p>Kid-friendly AR minigames (marching drills, firefighting, direction matching) that teach the history of a former naval base. I built the gameplay logic and flow, with a medal for every completed game.</p>
+<details class="case" open><summary><span class="o">&#9660; CLOSE CASE FILE</span><span class="c">&#9654; OPEN CASE FILE</span></summary><div class="cf">
 <h4>GOAL</h4><p>Make a former naval base's history fun and accessible for kids visiting the park.</p>
 <h4>HOW IT WORKS</h4><ul><li>Six minigames placed around the park, started by scanning a QR code.</li><li>A badge system rewards completing each game.</li><li>Built with subject matter experts so the history stays accurate.</li></ul>
 <h4>TAKEAWAY</h4><p>Designing for kids in a public space meant keeping every game short and easy to learn.</p></div></details></div>
 </article>
 
-<article class="lv r rv" style="--c:var(--mg)">
-<div class="media"><img class="fr" src="media/pnp1.webp" alt="Gameplay clip" loading="lazy"><div class="more"><img class="fr" src="media/pnp2.webp" alt="Gameplay clip" loading="lazy"><img class="fr" src="media/pnp3.webp" alt="Gameplay clip" loading="lazy"></div></div>
-<div class="pn"><div class="px lvn">LEVEL 06</div><h3>PLUG N PLAY</h3><div class="sub">Esports ability kit system · Prototype</div><p>Modular, parameter-driven ability kits for competitive games: a trail ability, a sound-based ping, and a tunable movement ability, all adjustable live during testing.</p>
-<details class="case"><summary>OPEN CASE FILE</summary><div class="cf">
+<article class="lv r rv" id="lv6" style="--c:var(--mg)">
+<div class="media"><img class="fr" src="media/pnp1.webp" alt="Plug N Play ability prototype" loading="lazy"><div class="more"><img class="fr" src="media/pnp2.webp" alt="Plug N Play ability prototype" loading="lazy"><img class="fr" src="media/pnp3.webp" alt="Plug N Play ability prototype" loading="lazy"></div></div>
+<div class="pn"><div class="px lvn">LEVEL 06<a href="#select">&#9650; LEVELS</a></div><h3>PLUG N PLAY</h3><div class="sub">Esports ability kit system · Prototype</div><p>Modular, parameter-driven ability kits for competitive games: a trail ability, a sound-based ping, and a tunable movement ability, all adjustable live during testing.</p>
+<details class="case" open><summary><span class="o">&#9660; CLOSE CASE FILE</span><span class="c">&#9654; OPEN CASE FILE</span></summary><div class="cf">
 <h4>GOAL</h4><p>Prove that ability kits for competitive games can be modular, precise and quick to rebalance.</p>
 <h4>HOW IT WORKS</h4><ul><li>Each ability is built from tunable parameters you can change live while testing.</li><li>Concepts designed to drop into engines like Unreal and Unity.</li></ul>
 <h4>THE PIVOT</h4><p>After a market and feasibility analysis, I led the shift from agent-design consultancy to a scalable tools-based model.</p></div></details></div>
@@ -203,26 +251,28 @@ details[open] .cf{animation:dn .45s ease-out}
 <section class="sec rv boss" id="boss">
 <div class="pn" style="--c:var(--li)">
 <div class="px" style="color:var(--li);font-size:12px">LEVEL 07 &middot; FINAL BOSS</div>
-<h2 style="margin:16px 0 0">LET'S BUILD SOMETHING</h2>
+<h2 style="margin:18px 0 0;--c:var(--li)">LET'S BUILD SOMETHING</h2>
 <a class="big" href="mailto:lemepro32@gmail.com">lemepro32@gmail.com</a>
 <p>+1 321-466-9758 (US) &nbsp;|&nbsp; +91 91477 64242 (India)</p>
-<div class="btns" style="justify-content:center"><a class="btn" href="https://www.linkedin.com/in/nillohit-manna">LINKEDIN</a><a class="btn" href="https://github.com/BaTMoN-PiXeL">GITHUB</a><a class="btn p" href="https://yeeeeeeeeeee.my.canva.site/nillohit-manna-portfolio">FULL PORTFOLIO</a></div>
+<div class="btns" style="justify-content:center"><a class="btn p" href="mailto:lemepro32@gmail.com">&#9654; SEND A MESSAGE</a><a class="btn" href="https://www.linkedin.com/in/nillohit-manna">LINKEDIN</a><a class="btn" href="https://github.com/BaTMoN-PiXeL">GITHUB</a></div>
 </div>
 </section>
-<footer>THANKS FOR PLAYING</footer>
+<footer>THANKS FOR PLAYING<br><span style="display:inline-block;margin-top:10px;font-size:8px">NO AI WAS HARMED (OR USED) IN THE MAKING OF THESE LEVELS</span></footer>
 </main>
 <script>
 (function(){
 var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
-var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('on');io.unobserve(x.target)}})},{threshold:.12});
+var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('on');io.unobserve(x.target)}})},{threshold:.1});
 document.querySelectorAll('.rv').forEach(function(n){io.observe(n)});
 var bar=document.getElementById('bar'),xp=document.getElementById('xp');
 function sc(){var h=document.documentElement,p=h.scrollTop/((h.scrollHeight-h.clientHeight)||1);bar.style.width=(p*100)+'%';xp.textContent='XP '+Math.round(p*100)+'%'}
 addEventListener('scroll',sc,{passive:true});sc();
-var vo=new IntersectionObserver(function(es){es.forEach(function(x){var v=x.target;if(x.isIntersecting){if(!v.getAttribute('src'))v.src=v.dataset.src;if(rm){v.controls=true}else{var q=v.play();if(q&&q.catch)q.catch(function(){})}}else{v.pause()}})},{rootMargin:'200px'});
-document.querySelectorAll('video[data-src]').forEach(function(v){vo.observe(v)});
-var el=document.getElementById('role'),w=el.textContent,i=0;
-if(!rm){el.textContent='';(function t(){el.textContent=w.slice(0,i++);if(i<=w.length)setTimeout(t,45)})()}
+if(!rm){var st=document.getElementById('stars'),cs=['#00e5ff','#ff2e93','#a3ff12','#ffd23f','#ffffff'];for(var s=0;s<36;s++){var i=document.createElement('i');i.style.cssText='left:'+(1+Math.random()*96)+'%;top:'+(1+Math.random()*96)+'%;--c:'+cs[s%5]+';--d:'+(3+Math.random()*4)+'s;--w:'+(Math.random()*5)+'s';st.appendChild(i)}}
+function warp(id){var t=document.getElementById(id);if(!t)return;t.classList.add('on');t.scrollIntoView({behavior:rm?'auto':'smooth'});t.classList.remove('flash');void t.offsetWidth;t.classList.add('flash');history.replaceState(null,'','#'+id)}
+document.querySelectorAll('.card').forEach(function(c){c.addEventListener('click',function(e){e.preventDefault();warp(c.getAttribute('href').slice(1))})});
+addEventListener('keydown',function(e){if(e.ctrlKey||e.metaKey||e.altKey)return;var t=e.target.tagName;if(t==='INPUT'||t==='TEXTAREA')return;var n=parseInt(e.key,10);if(n>=1&&n<=6)warp('lv'+n)});
+var el=document.getElementById('role'),w=el.textContent,k=0;
+if(!rm){el.textContent='';(function t(){el.textContent=w.slice(0,k++);if(k<=w.length)setTimeout(t,45)})()}
 })();
 </script>
 </body>
