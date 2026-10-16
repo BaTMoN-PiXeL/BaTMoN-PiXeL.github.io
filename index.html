@@ -28,7 +28,7 @@ a{color:inherit}
 .hud a{text-decoration:none;white-space:nowrap}
 .hud a:hover{color:var(--ye)}
 main{max-width:1320px;margin:0 auto;padding:0 clamp(16px,3vw,40px) 80px}
-.hero{min-height:78vh;display:flex;flex-direction:column;justify-content:center;gap:22px;padding-top:96px}
+.hero{display:flex;flex-direction:column;gap:20px;padding:92px 0 0}
 .start{color:var(--ye);font-size:12px;animation:blink 1s steps(2) infinite}
 @keyframes blink{50%{opacity:0}}
 h1{font-size:clamp(26px,6vw,60px);margin:0;color:#fff;text-shadow:0 0 18px var(--cy);animation:glitch 4s infinite}
@@ -47,7 +47,7 @@ h1{font-size:clamp(26px,6vw,60px);margin:0;color:#fff;text-shadow:0 0 18px var(-
 .pn::after{bottom:-8px;right:-8px;border-left:0;border-top:0}
 .pn:hover::before{top:-12px;left:-12px}
 .pn:hover::after{bottom:-12px;right:-12px}
-.sec{padding-top:64px}
+.sec{padding-top:56px}
 h2{font-size:clamp(14px,2.6vw,22px);color:#fff;margin:0 0 24px}
 h2 span{color:var(--c,var(--cy))}
 h2::after{content:"";display:inline-block;width:.6em;height:.9em;margin-left:10px;vertical-align:-2px;background:var(--c,var(--cy));animation:blink 1s steps(2) infinite}
@@ -90,13 +90,25 @@ h2::after{content:"";display:inline-block;width:.6em;height:.9em;margin-left:10p
 .ach p{margin:0;font-size:14.5px}
 .hint kbd{color:var(--ye);font:inherit;border:1px solid var(--ln);padding:2px 6px}
 /* levels */
-.lv{display:grid;grid-template-columns:1.25fr 1fr;gap:36px;margin-bottom:56px;align-items:start;scroll-margin-top:84px}
+.lv{position:relative;display:grid;grid-template-columns:1.25fr 1fr;gap:36px;margin-bottom:44px;align-items:start;scroll-margin-top:72px;padding:44px 36px 36px;border:1px solid color-mix(in srgb,var(--c) 40%,transparent);background:radial-gradient(ellipse at 0% 0%,color-mix(in srgb,var(--c) 16%,transparent),transparent 60%),radial-gradient(ellipse at 100% 100%,color-mix(in srgb,var(--c) 9%,transparent),transparent 55%),rgba(13,18,34,.88);overflow:clip}
+.lv::before{content:attr(data-n);position:absolute;right:20px;bottom:-14px;font:clamp(90px,14vw,190px)/1 'Press Start 2P',monospace;color:var(--c);opacity:.07;pointer-events:none}
+.lv::after{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:repeating-linear-gradient(90deg,var(--c) 0 18px,transparent 18px 26px);box-shadow:0 0 16px var(--c);animation:march 1.2s linear infinite}
+@keyframes march{to{background-position:26px 0}}
+.lv .tagline{position:absolute;top:14px;left:36px;font:9px 'Press Start 2P',monospace;color:var(--c);letter-spacing:1px}
+.lv>*{position:relative;z-index:1}
 .lv.r .media{order:2}
 .lv>.pn{position:sticky;top:84px}
+.lv>.tagline{position:absolute;z-index:1}
 .media{display:grid;gap:14px;align-content:start}
 .fr{display:block;width:100%;height:auto;background:#000;border:2px solid var(--c);box-shadow:0 0 26px -8px var(--c);transition:transform .3s,box-shadow .3s}
 .fr:hover{transform:scale(1.015);box-shadow:0 0 36px -4px var(--c)}
 .more{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+.duo{grid-template-columns:minmax(0,300px) minmax(0,220px);justify-content:center;align-items:center;gap:28px}
+.qr{border:2px solid var(--c);background:var(--pn);padding:16px;text-align:center;box-shadow:0 0 26px -8px var(--c)}
+.qr img{display:block;width:100%;background:#fff;padding:8px;animation:qp 2.4s ease-in-out infinite}
+@keyframes qp{50%{box-shadow:0 0 22px -2px var(--c)}}
+.qt{color:var(--c);font-size:9px;margin-bottom:12px;animation:blink 1.2s steps(2) infinite}
+.qr p{margin:12px 0 0;font-size:13px;color:var(--mu)}
 .cap{font:8px/1.9 'Press Start 2P',monospace;color:var(--mu)}
 .lvn{display:flex;justify-content:space-between;align-items:center;font-size:10px;color:var(--mu);margin-bottom:10px}
 .lvn a{color:var(--mu);text-decoration:none}
@@ -132,7 +144,7 @@ footer{text-align:center;color:var(--mu);font:9px 'Press Start 2P',monospace;pad
 .rv.on{opacity:1;transform:none}
 @media(max-width:1100px){.ls{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:900px){.sheet{grid-template-columns:1fr}.lv{grid-template-columns:1fr}.lv.r .media{order:0}.lv>.pn{position:static}}
-@media(max-width:620px){.ls{grid-template-columns:repeat(2,1fr)}.q li{grid-template-columns:1fr;gap:2px}.hud a{display:none}.hint{display:none}}
+@media(max-width:620px){.lv{padding:40px 16px 20px}.lv .tagline{left:16px}.duo{grid-template-columns:1fr 1fr;gap:14px}.qr{padding:10px}.qr p{display:none}.ls{grid-template-columns:repeat(2,1fr)}.q li{grid-template-columns:1fr;gap:2px}.hud a{display:none}.hint{display:none}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}html{scroll-behavior:auto}}
 </style>
 </head>
@@ -193,7 +205,7 @@ footer{text-align:center;color:var(--mu);font:9px 'Press Start 2P',monospace;pad
 <p class="hint rv">TIP: PRESS <kbd>1</kbd>–<kbd>6</kbd> TO WARP TO A LEVEL</p>
 <div class="ach rv"><div class="trophy" aria-hidden="true">&#9733;</div><div><div class="px at">ACHIEVEMENT UNLOCKED: HANDCRAFTED</div><p>Every level below was built by hand, back before AI could finish my sentences. That means the code took longer, the bugs are 100% organic and free-range, and each one was fixed the traditional way: staring at the screen until it got embarrassed.</p></div></div>
 
-<article class="lv rv" id="lv1" style="--c:var(--cy)">
+<article class="lv rv" id="lv1" style="--c:var(--cy)" data-n="01"><div class="tagline">STAGE 01 // RETRO ARCADE</div>
 <div class="media"><img class="fr" src="media/pong1.webp" alt="Crazy Pong gameplay" loading="lazy"><div class="more"><img class="fr" src="media/pong2.webp" alt="Crazy Pong running in the Easy68K simulator" loading="lazy"></div></div>
 <div class="pn"><div class="px lvn">LEVEL 01<a href="#select">&#9650; LEVELS</a></div><h3>CRAZY PONG</h3><div class="sub">Easy68K Assembly · Retro arcade</div><p>Pong rebuilt from scratch in assembly with a twist: misses bounce off the wall, and every paddle hit sends the ball out at a random angle and velocity.</p>
 <details class="case" open><summary><span class="o">&#9660; CLOSE CASE FILE</span><span class="c">&#9654; OPEN CASE FILE</span></summary><div class="cf">
@@ -202,7 +214,7 @@ footer{text-align:center;color:var(--mu);font:9px 'Press Start 2P',monospace;pad
 <h4>TAKEAWAY</h4><p>Managing registers and memory by hand gave me a deep respect for what engines abstract away.</p></div></details></div>
 </article>
 
-<article class="lv r rv" id="lv2" style="--c:var(--mg)">
+<article class="lv r rv" id="lv2" style="--c:var(--mg)" data-n="02"><div class="tagline">STAGE 02 // ARCADE SHOOTER</div>
 <div class="media"><img class="fr" src="media/edf2.webp" alt="Earth Defense Force gameplay" loading="lazy"><div class="more"><img class="fr" src="media/edf1.webp" alt="Earth Defense Force title screen" loading="lazy"><img class="fr" src="media/sprite_sheet_1.png" alt="Boss sprite sheet" loading="lazy"><img class="fr" src="media/sprite_sheet_3.png" alt="Stage 2 boss sprites" loading="lazy"></div><div class="cap">SPRITES: JALECO, SUPER E.D.F. (1991). STAGE 2 BOSS RIPPED BY FALCON DELTA.</div></div>
 <div class="pn"><div class="px lvn">LEVEL 02<a href="#select">&#9650; LEVELS</a></div><h3>EARTH DEFENSE FORCE</h3><div class="sub">C++ · OpenGL · Arcade shooter</div><p>A recreation of the Jaleco side-scroller using the original sprite sheets. Enemy behavior, collisions, scoring and input all handled in C++.</p>
 <details class="case" open><summary><span class="o">&#9660; CLOSE CASE FILE</span><span class="c">&#9654; OPEN CASE FILE</span></summary><div class="cf">
@@ -211,7 +223,7 @@ footer{text-align:center;color:var(--mu);font:9px 'Press Start 2P',monospace;pad
 <h4>TAKEAWAY</h4><p>Structuring wave spawning and enemy groups so the pacing builds on its own.</p></div></details></div>
 </article>
 
-<article class="lv rv" id="lv3" style="--c:var(--li)">
+<article class="lv rv" id="lv3" style="--c:var(--li)" data-n="03"><div class="tagline">STAGE 03 // NARRATIVE ADVENTURE</div>
 <div class="media"><img class="fr" src="media/caeab.webp" alt="Caesura Aura Meter ability" loading="lazy"><div class="more"><img class="fr" src="media/cae1.webp" alt="Caesura gameplay" loading="lazy"><img class="fr" src="media/cae3.webp" alt="Caesura gameplay" loading="lazy"><img class="fr" src="media/cae4.webp" alt="Caesura gameplay" loading="lazy"></div></div>
 <div class="pn"><div class="px lvn">LEVEL 03<a href="#select">&#9650; LEVELS</a></div><h3>CAESURA</h3><div class="sub">Third-person action-adventure · 22-person team</div><p>You play Lyra, a musician whose lyre heals corrupted creatures. I built the Aura Meter end to end (gameplay logic and UI), plus camera systems, fades and damage vignettes.</p><a class="btn" href="https://www.youtube.com/live/RwaHp0qxqt4?feature=shared&amp;t=2466">&#9654; GAMEPLAY DEMO</a>
 <details class="case" open><summary><span class="o">&#9660; CLOSE CASE FILE</span><span class="c">&#9654; OPEN CASE FILE</span></summary><div class="cf">
@@ -220,7 +232,7 @@ footer{text-align:center;color:var(--mu);font:9px 'Press Start 2P',monospace;pad
 <h4>TAKEAWAY</h4><p>Shipping inside a large team means clean hand-offs with design and art, not just working code.</p></div></details></div>
 </article>
 
-<article class="lv r rv" id="lv4" style="--c:var(--ye)">
+<article class="lv r rv" id="lv4" style="--c:var(--ye)" data-n="04"><div class="tagline">STAGE 04 // ENGINE PROGRAMMING</div>
 <div class="media"><a class="gh" href="https://github.com/BaTMoN-PiXeL/Game-Engine"><span class="px">&lt;/&gt; SOURCE CODE</span><b>BaTMoN-PiXeL / Game-Engine</b><span class="ghs">Browse the full C++ engine on GitHub &#8599;</span></a></div>
 <div class="pn"><div class="px lvn">LEVEL 04<a href="#select">&#9650; LEVELS</a></div><h3>C++ GAME ENGINE</h3><div class="sub">Built from scratch · Unit tested</div><p>A data-driven engine with a hierarchical JSON runtime and a lightweight scripting layer, so designers can change behavior without recompiling. Our team shipped <i>Vampire Hunters</i> on top of it.</p><a class="btn" href="https://github.com/BaTMoN-PiXeL/Game-Engine">&#9654; VIEW ON GITHUB</a>
 <details class="case" open><summary><span class="o">&#9660; CLOSE CASE FILE</span><span class="c">&#9654; OPEN CASE FILE</span></summary><div class="cf">
@@ -229,8 +241,8 @@ footer{text-align:center;color:var(--mu);font:9px 'Press Start 2P',monospace;pad
 <h4>TAKEAWAY</h4><p>Patterns and tests are what let a small team keep changing an engine without breaking it.</p></div></details></div>
 </article>
 
-<article class="lv rv" id="lv5" style="--c:var(--cy)">
-<div class="media"><img class="fr" src="media/nav.webp" alt="Navy League AR minigame on a phone" loading="lazy" style="max-width:320px;margin:0 auto"><div class="more" style="justify-items:center"><img class="fr" src="media/qr_for_ar_game.png" alt="QR code to play the AR game" loading="lazy" style="background:#fff;padding:10px;max-width:180px"></div><div class="cap" style="text-align:center">SCAN TO PLAY THE AR GAME</div></div>
+<article class="lv rv" id="lv5" style="--c:var(--cy)" data-n="05"><div class="tagline">STAGE 05 // AUGMENTED REALITY</div>
+<div class="media duo"><img class="fr" src="media/nav.webp" alt="Navy League AR minigame on a phone" loading="lazy"><div class="qr"><div class="px qt">&#9654; SCAN TO PLAY</div><img src="media/qr_for_ar_game.png" alt="QR code to play the AR game" loading="lazy"><p>Point your phone camera here to try one of the minigames yourself.</p></div></div>
 <div class="pn"><div class="px lvn">LEVEL 05<a href="#select">&#9650; LEVELS</a></div><h3>NAVY LEAGUE AR</h3><div class="sub">Web-based AR · Public park experience</div><p>Kid-friendly AR minigames (marching drills, firefighting, direction matching) that teach the history of a former naval base. I built the gameplay logic and flow, with a medal for every completed game.</p>
 <details class="case" open><summary><span class="o">&#9660; CLOSE CASE FILE</span><span class="c">&#9654; OPEN CASE FILE</span></summary><div class="cf">
 <h4>GOAL</h4><p>Make a former naval base's history fun and accessible for kids visiting the park.</p>
@@ -238,7 +250,7 @@ footer{text-align:center;color:var(--mu);font:9px 'Press Start 2P',monospace;pad
 <h4>TAKEAWAY</h4><p>Designing for kids in a public space meant keeping every game short and easy to learn.</p></div></details></div>
 </article>
 
-<article class="lv r rv" id="lv6" style="--c:var(--mg)">
+<article class="lv r rv" id="lv6" style="--c:var(--mg)" data-n="06"><div class="tagline">STAGE 06 // TOOLS &amp; PROTOTYPING</div>
 <div class="media"><img class="fr" src="media/pnp1.webp" alt="Plug N Play ability prototype" loading="lazy"><div class="more"><img class="fr" src="media/pnp2.webp" alt="Plug N Play ability prototype" loading="lazy"><img class="fr" src="media/pnp3.webp" alt="Plug N Play ability prototype" loading="lazy"></div></div>
 <div class="pn"><div class="px lvn">LEVEL 06<a href="#select">&#9650; LEVELS</a></div><h3>PLUG N PLAY</h3><div class="sub">Esports ability kit system · Prototype</div><p>Modular, parameter-driven ability kits for competitive games: a trail ability, a sound-based ping, and a tunable movement ability, all adjustable live during testing.</p>
 <details class="case" open><summary><span class="o">&#9660; CLOSE CASE FILE</span><span class="c">&#9654; OPEN CASE FILE</span></summary><div class="cf">
